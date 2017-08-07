@@ -1,49 +1,1121 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>Kotlin - The Next Enterprise JVM Language</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/gruvbox-dark.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Kotlin</h1>
+            <h3>The next Enterprise JVM language</h3>
+            <p>
+                <small>Sanya Rajan</small>
+            </p>
+        </section>
+        <section>
+            <section>
+                <h2>What is Kotlin?</h2>
+                <img class="fragment" src="images/java.png">
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                <aside class="notes">
+                    <p>Kotlin is a statically typed programming language that targets the JVM, Android, JavaScript and
+                        Native. It’s developed by JetBrains. The project started in 2010 and was open source from very
+                        early
+                        on.
+                        In February 2016 the first official 1.0 release was made and in May 2017 Google promoted Kotlin
+                        as a
+                        first class language on Android.</p>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                    <p>I'm going to introduce you to the Kotlin language, starting from basics and then through some of
+                        the
+                        more interesting aspects of it. I'll first cover the syntax and other basic building blocks of
+                        the
+                        language then move on to variables, functions, classes, interfaces, and objects and finally a
+                        few
+                        examples about control flow, lambdas and extension functions.</p>
+
+                    <p>Let's start by talking about where the name of the language comes from. Java is named after the
+                        Indonesian island.</p>
+                </aside>
+            </section>
+            <section>
+                <img src="images/kotlin.png">
+                <aside class="notes">
+                    This is St Petersburg, here is the Jetbrains office where the team that initially developed Kotlin
+                    is and in the middle of the bay is Kotlin Island.
+                </aside>
+            </section>
+            <section>
+                <h2>Kotlin vs Java vs Scala</h2>
+                <aside class="notes">
+                    <p>When introducing Kotlin there are a few approaches we can take, we can discuss it through Java,
+                        the language Kotlin needs to be based on due to its JVM runtime, or
+                        we can do it through Scala, the language Kotlin is heavily influenced by. There is no doubt that
+                        Kotlin is better than Java. It is much safer and more concise. It provides quite a few
+                        additions to the standard Java language and enhances a few bits and pieces that Java developers
+                        have grown to dislike. Additions include things like null safety, extension functions, data
+                        classes,
+                        objects, first class functions as well as extensive and expressive lambdas. Kotlin also enhances
+                        Java’s type inference and type system and takes massive leaps forward with collections.</p>
+
+                    <p>It is perhaps better to compare Kotlin against Scala. Scala has the reputation of being
+                        simultaneously intriguing and frightening. It makes
+                        heavy use of functional programming paradigm while still mixing it into familiar object
+                        orientation (therefore in most cases creating a mishmash of advanced techniques from both
+                        paradigms). Kotlin is similar to Scala in the sense that it follows the same path as Scala,
+                        luckily,
+                        it’s only slightly similar to Scala in every aspect.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Kotlin and Functional Programming</h2>
+                <aside class="notes">
+                    <p>The functional programming paradigm is big part of Kotlin. Kotlin introduces easy-to-use
+                        collection manipulation functions and functional pipelines for you. You will get your maps,
+                        filters,
+                        and folds, which in most cases are enough to get to the functional programming path.</p>
+
+                    <p>If you have worked with Java 8 you will be familiar with the these basics
+                        and will feel right at home when you start using Kotlin. You will also find conciseness and
+                        safety
+                        of better type system, which will spark
+                        their first crush towards the language. It is just so pretty and seamless to pipe these
+                        functions
+                        together and build a clean pipeline. And when you come back to it after a few weeks, you’ll
+                        still
+                        feel like you can somewhat understand it.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Build Processes</h2>
+                <p class="fragment">Gradle/Maven plugin</p>
+                <p class="fragment">Kotlin code can live side by side with existing Java code</p>
+                <aside class="notes">
+                    <p>When developing in Kotlin, your build processes will be more or less the same as in your old Java
+                        application. Since you are already familiar with these, there is no need to learn anything new.
+                        The
+                        build process and build tools introduced by Kotlin can be described simply as: Gradle/Maven
+                        Plugin.</p>
+                    <p>You can introduce the language to your codebase by adding the Kotlin plugin to your Gradle/Maven
+                        build script and making sure it points to the correct folder that defines your Kotlin files
+                        —adding
+                        Kotlin to your code base is just a quick Ctrl-C + Ctrl-V away.</p>
+
+                    <p>As a language, Kotlin is very close to Java. This gives us a few nice little perks. For example,
+                        the interoperability between Java and Kotlin is brilliant —you can jump from one file to the
+                        next
+                        and change the language with zero barriers. Introducing Kotlin to your code base can be done
+                        incrementally because your old Java code can live side-by-side with your newer Kotlin code.
+                        Another
+                        perk we get from not deviating too far from Java is the whole compile process. Compiling Kotlin
+                        code
+                        to JVM bytecode does not take that long, in fact it is faster than Java on incremental
+                        builds.</p>
+                </aside>
+            </section>
+
+        </section>
+        <section>
+            <section>
+                <h2>Kotlin Syntax</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+print("Hello World")
+					</code></pre>
+
+                <aside class="notes">
+                    <p>We are going to start off with a simple hello world. In Kotlin, it goes a bit like this.</p>
+
+                    <p>The syntax looks quite straightforward: parenthesis means a function call. There is no semicolon
+                        to
+                        end the line.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Variables</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val hello: String = "Hello"
+val world: String = "World"
+
+var helloWorld: String  = hello
+helloWorld += " " + world
+					</code></pre>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val hello = "Hello"
+val world = "World"
+val one = 1
+					</code></pre>
+                <aside class="notes">
+                    <p>Variable declaration in Kotlin can happen in two different ways. We have keywords val and var.
+                        These two look similar but have one major difference:</p>
+
+                    <p>Values declared with val are immutable (well, read-only) and you can only assign a value to them
+                        exactly one time. That time comes when you are declaring and creating the value or when you are
+                        assigning a value to already declared but not created one. Variables with var are mutable and
+                        can be
+                        reassigned. The preferred way is to use vals everywhere that is possible. This way the codebase
+                        will
+                        be easier to handle and reason about.</p>
+
+                    <p> Notice how the type of the variable is defined after the variable, separated by a colon. There’s
+                        a
+                        good reason behind this. The compiler can now decide whether or not to infer the type, which
+                        means
+                        that Kotlin has a more powerful type inference than Java. You can actually leave the type
+                        declaration out completely and the compiler will know what you mean.
+                        This only works when the value, and therefore the type of the value, is known.</p>
+                </aside>
+            </section>
+            <section>
+                <h2><span class="fragment zoom-in highlight-current-green">Fun</span>ctions</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+// No return type
+fun sayIt (a: String) {
+    println(a)
+}
+
+// With return type
+fun returnSomething (something: String): String {
+    return something
+}
+
+// As a single-expression function with inferred
+// return type and automatic return
+fun returnOtherThing (otherThing: String) = otherThing
+					</code></pre>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+fun optFun(isItFun: Boolean = true,
+           whyIsItFun: String = "Because") =
+        if (isItFun) whyIsItFun else "It's not fun"
+
+println(optFun()) // Because
+println(optFun(false)) // It’s not fun
+println(optFun(whyIsItFun = "It's Summer!")) // It's Summer!
+                </code></pre>
+                <aside class="notes">
+                    <p>In Kotlin we use the keyword fun to declare functions.</p>
+
+                    <p>Type declaration follows the same pattern here —it comes last. In our first
+                        function, we are not returning anything so we can omit the type, which in this case would be
+                        Unit
+                        (which corresponds to the void type in Java).
+                        In the second function, we defined that we must return a String and we did, using the trusty
+                        return
+                        keyword. Last one is a bit more puzzling. There are no curly brackets, just an equal sign. That
+                        means our function is an expression and it will return automatically.
+                    </p>
+                    <p>When you’re just starting to build up functional pipelines, most people tend to lean towards
+                        these
+                        expressions. It is a way to force your functions to do one thing, and do it well. As you can
+                        see,
+                        the return type in expressions is optional and can be omitted or left in place, whatever makes
+                        you
+                        happy (rule of thumb: in long expressions, put it in, in shorter ones, it can be omitted).</p>
+
+                    <p> Kotlin also introduces the concept of optional and named function parameters. This is useful
+                        if your functions have a lot of parameters.</p>
+
+                    <p>In this code, we defined our function parameters with default values. When this is done, we can
+                        just call the function with zero, one, or both of its arguments. If arguments are omitted, then
+                        the
+                        default values kick in. As you can see, we can also call the function while naming the
+                        arguments.
+                        This gives us more insight into what we are calling with which value and the possibility to
+                        target
+                        individual optional arguments. Optional arguments work for both class constructors as well
+                        as functions.</p>
+
+                    <p>There are also neat little things like extension functions and infix functions as well as
+                        operator
+                        overloading in the language. These aspects of Kotlin make writing the language
+                        more pleasant. They will be covered a bit later.</p>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Classes, Interfaces and Objects</h2>
+
+                <aside class="notes">
+                    Like Java, Kotlin has classes and interfaces. Unlike Java, Kotlin instances can all live in the same
+                    file and don't need their own. This decision made by the Kotlin team has made code organization more
+                    pleasant and language more concise. Let's tackle classes first.
+                </aside>
+            </section>
+            <section>
+                <h2>Classes</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+class SimpleClass
+
+class SimpleClassWithConstructor(val chop: String)
+// Also can be written as:
+// class SimpleClassWithConstructor constructor (
+//     val chop: String)
+
+<span class="fragment">val simpleClass = SimpleClass()</span>
+
+<span class="fragment">val lamb = SimpleClassWithConstructor("Hello")</span>
+
+<span class="fragment">println(lamb.chop)</span>
+            </code></pre>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+class SimpleClassWithConstructor(val chop: String) {
+    fun sayItMate(): String = chop + ", mate"
+}
+                </code></pre>
+                <aside class="notes">
+                    <p>In Kotlin, there are a handful of ways to create classes. The first example in the snippet
+                        reveals a
+                        few things to us:</p>
+                    <ul>
+                        <li>Naming convention starts with a Capital letter</li>
+                        <li>There are no curly braces</li>
+                        <li>There is no visibility modifier in this example</li>
+                        <li>We still use the class keyword.</li>
+                    </ul>
+
+                    <p>In Kotlin we instantiate these classes nearly the same way as we do in Java, except, we omit the
+                        new
+                        keyword. Like this:</p>
+
+                    <p>We have now instantiated a class that we can do nothing with. Great!</p>
+
+                    <p>The second example is similar, but it has a constructor. Notice how the constructor is bundled
+                        into
+                        the same line as the class (you can leave the constructor keyword out in most cases, it only
+                        needs
+                        to be added if the class has annotations or visibility modifiers), another way to make Kotlin
+                        code
+                        more succinct. When we instantiate this class, we need to pass in the value for chop.
+                        Properties in Kotlin are public by default, so there is a simple way to access this property:
+                        This class doesn't have any functionality; it is just a vessel for our data. We can add some
+                        functionality in there by defining functions inside the class. Like this:</p>
+
+                    <p>We can attach properties, other classes, extra constructors or initialisation blocks in and we
+                        can
+                        assign visibility modifiers to all of them individually.</p>
+                </aside>
+            </section>
+            <section>
+                <pre><code class="kotlin hljs" style="max-height: 90%;width: 1060px;overflow: visible"
+                           data-trim data-noescape>
+class Terrance(val relationship: String) {
+    lateinit var person : CanadianPerson
+    val eh: String
+
+    init {
+        eh = "eh"
+    }
+
+    fun initialisePerson(phrase: String) {
+         person = CanadianPerson(phrase)
+    }
+
+    inner class CanadianPerson(val snipe: String){
+        // The dollar sign makes use of string interpolation and replaces
+        // the $-prefixed property name with the toString implementation
+        // defined in that property.
+        fun sayIt():String = "$snipe your $relationship, $eh"
+    }
+}
+val d = Terrance("friend")
+d.initialisePerson("I’m not")
+print(d.person.sayIt()) // I'm not your friend, eh
+                </code></pre>
+                <aside class="notes">
+                    <p>Here, we have a few moving parts. By using the lateinit keyword, we can tell the compiler that
+                        this
+                        property is not null, even though we don't initialize it right away. This is useful for cases
+                        where
+                        we don't initialize our properties in the constructor but use, for example, a dependency
+                        injection
+                        framework to assign values to them. Note that our lateinit property is mutable — this is a
+                        must.</p>
+
+                    <p>init is equivalent to the constructor block in Java classes. In there, we can perform needed
+                        actions
+                        when we instantiate the class. In this case, we assign a String to our property, something that
+                        could be done as a joined assignment as well.</p>
+
+                    <p>Next, we have a function that finally assigns a value to our lateinit property, instantiating an
+                        inner class CanadianPerson. This inner class is just a vessel to our data once again.</p>
+
+                    <p>Finally, we’ll have a function that we invoke: this function will return a String, which it
+                        parsed
+                        together using string interpolation. The dollar sign character can be used in Strings to replace
+                        the
+                        $-prefixed property name with its toString implementation, defined in that property.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Data Classes</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+data class Fruit(val colour: String, val weight: Double,
+                 val price: Double)
+<span class="fragment">val banana = Fruit("Yellow", 1.5, 4.67)</span>
+<span class="fragment">val organicBanana = banana.copy(price = 7.99)</span>
+<span class="fragment">val (_, bananaWeight, bananaPrice) = banana</span>
+                </code></pre>
+                <aside class="notes">
+                    <p>Now that we have gone through classes with some functionality in them, we can take a look at some
+                        simpler classes that do nothing other than hold our data.</p>
+
+                    <p>For these kind of data transfer objects, Kotlin has introduced a keyword to define them: data
+                        class.
+                        It differs from standard classes in a few ways. A data class automatically generates equals,
+                        hashcode, toString and copy functions. The first three of these are familiar for Java devs, the
+                        fourth one is a nice addition that helps us create similar objects from our read-only data
+                        class.
+                        The copy function can be used to do that.</p>
+
+                    <p>In this case, the organicBanana object contains a price 7.99 and the rest of the data is the same
+                        as
+                        for the banana object.</p>
+
+                    <p>We also get component functions to the data class for free. These component functions are a way
+                        to
+                        access the data within our data class via destructuring. This helps take individual properties
+                        from
+                        our data classes with a one line call. Note that the order of destructuring variables depends on
+                        the
+                        order of the properties in our data class; the names don't actually matter at all. Since version
+                        1.1
+                        you can use an underscore to ignore variables you don't need.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Interfaces</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+interface Greeter {
+    val value: String
+    fun greet(): String
+}
+
+class GreeterClass: Greeter{
+    override val value: String = "Hello"
+    override fun greet(): String = "$value, world"
+}
+
+println(GreeterClass().greet()) // Hello, world
+                </code></pre>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+interface Greeter {
+    val value: String
+    fun greet(): String {
+        return "$value, world"
+    }
+}
+                </code></pre>
+                <aside class="notes">
+                    <p>Interfaces in Kotlin don't differ that much from the Java world. One nice thing is that you can
+                        have
+                        abstract properties in your interfaces as well. These properties need to be initialized in the
+                        implementing class.</p>
+
+                    <p>As you can see, this is very similar to Java. Like Java 8, Kotlin also can have default
+                        implementations in interfaces. We can achieve the same thing with this interface.</p>
+
+                    <p>Using this, we don't have to override the function in our implementing class. Note that the
+                        override keyword is mandatory in Kotlin.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Objects</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+object SingletonClass{
+    fun sayHello(): String = "Hello world"
+}
+
+println(SingletonClass.sayHello())
+<span class="fragment">
+class AccompaniedClass(val str: String){
+    companion object Greeter{
+        fun sayHello(): String = "Hello world"
+    }
+}
+
+println(AccompaniedClass.sayHello())
+</span>
+				</code></pre>
+
+                <aside class="notes">
+                    <p>In Kotlin, you can create singletons with the object keyword and access functions and properties
+                        directly.</p>
+
+                    <p>The companion object is slightly different. It is defined within a class, which is still a
+                        singleton, and it can be accessed using the name of the wrapping class. The members of companion
+                        objects look like static members in Java but at runtime those are still instance members of real
+                        objects, and can, for example, implement interfaces.</p>
+
+                    <p>That's a short introduction to classes in Kotlin. There are quite a bit more we can discuss on
+                        classes and we'll go through visibility modifiers, sealed classes, generics,
+                        and others a bit later.</p>
+                </aside>
+            </section>
+
+        </section>
+        <section>
+            <section>
+                <h2>Control Flow</h2>
+
+                <aside class="notes">
+                    Now that we have covered variables, functions, and classes we
+                    can take a look at some control structures in Kotlin. We start with the if statement.
+                </aside>
+            </section>
+            <section>
+                <h2>If</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val three = 4
+if (three != 3) {
+    println("No, it isn't!")
+} else{
+    println("You don't say.")
+}
+<span class="fragment">
+val three = 4
+val check = if(three != 3) {
+    "No, it isn't!"
+} else{
+    "You don't say."
+}
+println(check) // No, it isn't!
+</span>
+				</code></pre>
+
+                <aside class="notes">
+                    <p>If statements in Kotlin work more or less the same way as in Java.</p>
+
+                    <p>This looks exactly the same as in Java. The next one is a bit more interesting.</p>
+                    <p>If statements in Kotlin are actually expressions. They return the last value within their block,
+                        so
+                        in this case, the String value written in it. Since you can use
+                        these ifs the same way as ternary operators, Kotlin has actually omitted ternary completely.
+                        Therefore, the question mark symbol has a different meaning in
+                        in Kotlin.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>When</h2>
+                <pre class="fragment"><code class="kotlin hljs" style="max-height: 90%" data-trim data-noescape>
+when (three) {
+    3 -> print("three is three")
+    2 -> print("three is two?!?")
+    else -> print("I don't know what's going on anymore")
+}
+
+<span class="fragment">
+when (three) {
+    3 -> print("three is three")
+    1,2 -> print("three is two or one?!?")
+    in 4..10 -> print("Three can't be between 4 and 10!")
+    else -> print("I don't know what's going on anymore")
+}
+</span>
+<span class="fragment">
+val three = 4
+val check = when {
+    three != 3 -> "No, it isn't!"
+    else -> "You don't say."
+}
+println(check) // No, it isn't!
+</span>
+				</code></pre>
+
+                <aside class="notes">
+                    <p>switch-case has had the same fate as ternary operator. It has been replaced by the when statement
+                        in Kotlin.</p>
+
+                    <p>As you can see the else clause replaced the default case, and arrow replaced the : character.
+                        break is not needed anymore since the when expression will stop when it hits the first true
+                        case.
+                        We can also wrap each of these cases with squiggly brackets — in those cases, just like in if
+                        expression,
+                        the last statement of the block will be returned. There are a few interesting aspects of these
+                        when
+                        expressions. They can be evaluated using any kind of expressions, many cases can be bundled
+                        together
+                        and for numeric values, you can use ranges to determine the clause.</p>
+
+                    <p>We can also omit the parenthesis and the passed in value from our when completely and make it
+                        look
+                        like an if .</p>
+                </aside>
+            </section>
+            <section>
+                <h2>For</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+for (i in 1..10) {
+    print(i)
+} // 12345678910
+
+for (i in 1..10 step 2) {
+    print(i)
+} // 13579
+
+val lst = listOf(1,2,3)
+for (i in lst){
+    print(i)
+} // 123
+				</code></pre>
+
+                <aside class="notes">
+                    <p>The .. is a range expression in Kotlin, it's one of the building blocks for for statements in the
+                        language. In Kotlin collection extension functions replace simple loops in most instances but
+                        here
+                        are a few examples.</p>
+
+                    <p>These are straight forward enough. In the first one, we used the in keyword to take a value
+                        from the range that we defined with double-dot and assigned that to i. Next loop adds a step
+                        keyword
+                        which indicates that we want to take every other value from the range. The third example loop
+                        takes
+                        values from a list (that we have created with a function call to listOf) and prints them out.
+                        That
+                        is more or less for-loops in Kotlin.</p>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Collections</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+listOf(1,2,3)
+mutableListOf("a", "b", "c")
+
+setOf(1,2,3)
+mutableSetOf("a", "b", "c")
+
+mapOf(1 to "a", 2 to "b", 3 to "c")
+mutableMapOf("a" to 1, "b" to 2, "c" to 3)
+				</code></pre>
+
+                <aside class="notes">
+                    <p>One of the most interesting parts of Kotlin is its collection library and the methods provided
+                        with
+                        that. In Kotlin there is an explicit separation of mutable and immutable collections.
+                        Like the Kotlin language in general, collections lean heavily on the
+                        immutable side. This makes functional programming patterns particularly useful, if not
+                        essential.
+                        Immutability also makes parallelism and concurrency easier to reason about.</p>
+
+                    <p>What are Kotlin collections then? If you are familiar with Java 8 you will be quite knowledgeable
+                        about these collection methods (Java streams)
+                        and idioms as well. Kotlin, though, takes it one step further and provides extensions for most
+                        things you can think of (and few that you can't). Let's take a closer look.</p>
+
+                    <p>Those are some of the basic helper methods Kotlin offers to create collections. I've listed both
+                        immutable and mutable versions of List, Set and Map here. Note that the to in our map
+                        declarations
+                        is actually an infix function and not a keyword. The real power of Kotlin collections, in
+                        addition to their default immutability, comes from the extension functions in the Kotlin stdlib.
+                        If
+                        you are familiar with functional programming, you will be familiar with most of these functions.
+                        We get all the usual functions like
+                        map, flatMap, forEach, fold, reduce, filter, zip and many many more.</p>
+
+                    <p>Before we can use those, though, we need to talk about one important thing in Kotlin: lambdas. In
+                        Kotlin
+                        there are few ways to define a lambda function.</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Lambdas</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val myList = listOf(1,2,4)
+
+myList.map { elem ->
+    elem + 1
+} // 2,3,5
+
+myList.filter { it != 1} // 2,4
+
+fun folder(a: Int, b: Int) = a + b
+myList.reduce(::folder) // 7
+// also: myList.reduce { a, b -> folder(a, b) }
+				</code></pre>
+
+                <aside class="notes">
+                    <p>In the first example, we define the most common use of Kotlin lambdas. We can shorthand the
+                        anonymous function with angle brackets. We can also choose the name of the argument coming into
+                        our
+                        lambda (we have omitted the type definition in here; we can see from myList list that it is an
+                        Int),
+                        in this case elem. And then we define the body of our lambda. No need for a return statement,
+                        the
+                        last line will be returned.</p>
+
+                    <p>The next example takes it one step further and omits even the argument definition. In Kotlin, by
+                        default one argument lambdas will receive the argument named as it. That makes sense because we
+                        know
+                        we are working on it; no need to name things. Note that overuse of its, especially in nested
+                        functions can lead to messy code. In simple cases, it's fine but In more complex scenarios it is
+                        better to explicitly name the input argument.</p>
+
+                    <p>The last one introduces a few new concepts to us. First is a local function (functions can be
+                        defined anywhere, even in other functions) that we reference
+                        with a double colon syntax, familiar to us from Java 8 (though there is no need for static
+                        keywords
+                        or Class names here). The local function looks and acts very similarly to class
+                        or global scoped function but as an addition it also has access to variables defined in the same
+                        scope as the function itself. The second way to reference our local function is to just simply
+                        call
+                        it within our lambda, as is displayed in the commented-out section.</p>
+
+                    <p>As you can see, lambdas in Kotlin are defined in a straightforward manner. They are very
+                        noticeable
+                        in your code base as well and make the usage of higher order functions very easy. The best part
+                        about Kotlin and lambdas, if you use Intellij or other such IDE is the type inference which will
+                        prompt you when the types don't match.</p>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Null Safety</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+var nil: String? = null
+val notNil: String = "Hi"
+var nil = null
+
+<span class="fragment">
+data class Person(val name: String, val age: Int)
+fun process(somebody: Person?){
+    print(somebody.name)
+}
+// error: Only safe (?.) or non-null asserted (!!.)
+//        calls are allowed on a nullable receiver
+//        of type Person?
+</span>
+				</code></pre>
+
+                <aside class="notes">
+                    <p>If you surf to the Jetbrains website about Kotlin you will see how they advertise the language is
+                        "Safe" and helps you avoid NullPointerExceptions. What does this actually mean?</p>
+
+                    <p>In Kotlin you have absolute null safety for your Kotlin code and relative null safety to other
+                        JVM
+                        code that you integrate with. The Kotlin compiler is very strict in analysing the code you have
+                        written when it comes to nullability. If you define a variable that might be null you need to
+                        define
+                        it as nullable. This Kotlin compiler can figure out if you are able to make a direct call using
+                        your
+                        variable or if you need to make a null check beforehand. How does this work in practice?</p>
+
+                    <p> These three variable declarations have two nullables and one not-null. The common denominator
+                        for
+                        nullables is the question mark; nullable variables and function arguments are defined with the
+                        question mark, not-nulls without it. This question mark plays an important role in Kotlin “null
+                        safe” code. If the Kotlin compiler sees this question mark either in a variable declaration or
+                        in a
+                        function argument/return type, it will force you to do a null check on it. If you are writing
+                        predominantly Kotlin code, you are smartly steered away from nullable code. However, Kotlin is
+                        highly interoperable with Java, so when you are touching the Java world you will have to assume
+                        that
+                        some data passed around might be null. Kotlin provides a few helpers to deal with this.</p>
+
+                    <p>If you try to do this you will see how the Kotlin compiler will show an error.
+                        To get around this you have few options.</p>
+                </aside>
+            </section>
+            <section>
+                <pre><code class="kotlin hljs" style="max-height: 90%;" data-trim data-noescape>
+fun process(somebody: Person?){
+    if(somebody != null){
+        print(somebody.name)
+    }
+}
+<span class="fragment">
+fun process(somebody: Person?){
+    print(somebody?.name)
+}
+</span>
+<span class="fragment">
+fun process(somebody: Person?){
+    somebody?.name?.let {
+        print(it)
+    }
+    /// OR
+     somebody?.name?.let { name ->
+         print(name)
+     }
+}
+</span>
+<span class="fragment">
+fun process(somebody: Person?) = somebody?.name <span class="fragment highlight-current-green">?:</span> "James"
+</span>
+                    <span class="fragment">
+                <img src="images/elvis.png" style="left: 60%;position: absolute;top: 60%;">
+                </span>
+				</code></pre>
+
+                <aside class="notes">
+                    <p>First we have the tried and trusted not-null check. We know this is works and have been
+                        using it in other languages. The compiler knows that after the null check is done
+                        we can use our variable. In the second
+                        example we get to see some magic. The already familiar question mark is there again, but this
+                        time
+                        in a different role. In this context the question mark says If somebody is not null, then take
+                        the
+                        name
+                        property from it. If somebody is null, then null will be printed into the console.</p>
+
+                    <p>The third function introduces a new kind of extension function we can use for this, called let.
+                        We'll cover that when we talk about extension functions, but first we'll wrap up null safety and
+                        take a look at the null-coalescing or
+                        elvis operator. Using elvis goes a little bit like this:</p>
+
+                    <p>As you can see, we use the safe call operator for somebody. In case the latter of
+                        these two fellows is null, we'll return "James"; in case the former one is null we'll still
+                        return
+                        "James," because we will never actually reach the name property access attempt. Now we can take
+                        a
+                        closer look at
+                        that and its compatriots as well.</p>
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Extension functions</h2>
+                <pre class="fragment"><code class="java hljs" data-trim data-noescape>
+class Util {
+  public static final boolean isNumeric(String receiver) {
+     return receiver.matches("\\d+");
+  }
+}
+
+String myString = ...;
+
+if(Util.isNumeric(myString)) {...}
+				</code></pre>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+fun String.isNumeric() = matches("\\d+".toRegex())
+
+val myString = ...
+
+if(myString.isNumeric()) ...
+				</code></pre>
+
+
+                <aside class="notes">
+                    <p>Kotlin's extension functions allow you to add new functionality to an existing class, without
+                        using
+                        inheritance or reflection. You can define your own extension functions and Kotlin ships with a
+                        lot
+                        of pre-defined ones.
+                        There are a lot of extension functions for collections, but also those that extend every class
+                        in
+                        your
+                        program.</p>
+
+                    <p>In Java, you might have something like this:</p>
+
+                    <p>By using an extension function, Kotlin allows us to call the isNumeric method directly on the
+                        receiving object:</p>
+
+                    <p> Lets look at some standard extension functions</p>
+                </aside>
+            </section>
+            <section>
+                <h2>Operator and Infix</h2>
+                <pre class="fragment"><code class="kotlin hljs" style="max-height: 90%" data-trim data-noescape>
+data class Person(var name: String, val surname: String,
+                    var age: Int)
+
+var person = Person("John", "Smith", 24)
+
+operator fun Person.inc(): Person { // the `++` operator
+    this.age++
+    return this
+}
+
+person++
+println(person) // Person(name=John, surname=Smith, age=25)
+
+infix fun Person.changedNameTo(name: String): Person {
+    this.name = name
+    return this
+}
+
+person changedNameTo "Andrew"
+println(person) // Person(name=Andrew, surname=Smith, age=25)
+				</code></pre>
+
+                <aside class="notes">
+                    <p>There are a few other keywords that can be attached to our extension functions. We can add
+                        operators
+                        to our classes by using the operator keyword and we can create infix functions with the infix
+                        keyword. Operators have a defined list of functions that you can override; infix possibilities
+                        are
+                        endless.</p>
+
+                    <p>With these little tricks, we can create simple classes and keep them doing their one thing, and
+                        doing it well. If there is a need to extend these classes, we don't necessarily have to start
+                        building a network of class hierarchies; we can simply add the required functions.</p>
+
+
+                </aside>
+            </section>
+            <section>
+                <h2>Extension properties</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val Person.isAdult: Boolean
+    get() = age > 18
+
+println(person.isAdult) // true
+				</code></pre>
+
+                <aside class="notes">
+                    On top of extension functions, Kotlin also offers the opportunity to create extension properties.
+                    That is, we can (in theory) extend individual fields in our classes! There are some things you need
+                    to know about extension properties. One is that to get their value, you need to define a get()
+                    function for them. Another one is that if you want to make them mutable and set their value, you
+                    have to define a set() function. Kotlin doesn't actually modify the class itself, so you cannot add
+                    an extension property with a backing field.
+                </aside>
+            </section>
+            <section>
+                <h2>Run</h2>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val generator = PasswordGenerator()
+generator.seed = "someString"
+generator.hash = {s -> someHash(s)}
+generator.hashRepetitions = 1000
+
+val password: Password = generator.generate()
+
+<span class="fragment">
+val password = PasswordGenerator().run {
+       seed = "someString"
+       hash = {s -> someHash(s)}
+       hashRepetitions = 1000
+
+       generate()
+   }
+</span>
+				</code></pre>
+
+                <aside class="notes">
+                    Consider this example. The password generator class is not well designed, the constructor does
+                    nothing and it requires a lot of initialisation. To use this class, we need a variable generator,
+                    set all
+                    necessary parameters and use the generate function to generate the actual password. This is good if
+                    I want to
+                    generate multiple passwords with the same generator, but if I'm not reusing the generator variable
+                    , I can save some typing by using run:
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Apply</h2>
+                <pre class="fragment"><code class="java hljs" style="max-height: 90%;" data-trim data-noescape>
+public class BeanClass {
+   private String thing;
+   private String otherThing;
+
+   public String getThing() {
+       return thing;
+   }
+
+   public void setThing(String thing) {
+       this.thing = thing;
+   }
+
+   public String getOtherThing() {
+       return otherThing;
+   }
+
+   public void setOtherThing(String otherThing) {
+       this.otherThing = otherThing;
+   }
+}
+				</code></pre>
+
+                <aside class="notes">
+                    Another standard extension function in Kotlin is apply and the true power of it comes through when
+                    using it to work with Java objects in your Kotlin code. For the example java class you would need to
+                    write code like the following to initialise it:
+                </aside>
+            </section>
+            <section>
+
+                <pre class="fragment"><code class="java hljs" data-trim data-noescape>
+BeanClass bean = new BeanClass();
+bean.setThing("This thing");
+bean.setOtherThing("The other thing");
+				</code></pre>
+                <pre class="fragment"><code class="kotlin hljs" data-trim data-noescape>
+val bean = BeanClass().apply {
+    setThing("This thing")
+    setOtherThing("The other thing")
+}
+
+<span class="fragment">
+val bean = BeanClass().apply {
+    thing = "This thing"
+    otherThing ="The other thing"
+}
+</span>
+				</code></pre>
+
+                <aside class="notes">
+                    In Kotlin we can write the code as follows. In fact in Kotlin we can go one step further since the
+                    getter and setter in Java are treated as properties. There are a few other standard extension
+                    functions we haven't covered such as also, takeIf and takeUnless.
+                </aside>
+            </section>
+
+        </section>
+        <section>
+            <h2>Types</h2>
+            <pre class="fragment"><code class="kotlin hljs" style="max-height: 90%;" data-trim data-noescape>
+fun failToCompile(number: Any): Int {
+    return number + 29
+} // error: Unresolved reference. None of the following
+  //        candidates is applicable because of receiver
+  //        type mismatch:
+
+
+fun getTheAnswer(number: Any): Int {
+    if (number is Int) {
+        return number + 29
+    }
+    return 0
+}
+println(getTheAnswer(13)) // 42
+
+<span class="fragment">
+fun getTheAnswer(number: Any): Int = when(number) {
+    is Int -> number + 29
+    else -> 0
+}
+println(getTheAnswer(13)) // 42
+</span>
+				</code></pre>
+
+            <aside class="notes">
+                <p>In Java you might have come across many instances where you needed to check the type of an object to
+                    ensure you are
+                    working on the correct implementation of an interface or base class. This happens a lot in the
+                    boundaries of
+                    the application, be it database access, API calls or incoming JSON. Kotlin is similar to Java in
+                    many
+                    ways and there might be a need to cast and check your types to
+                    see that you are working with the correct implementation. Kotlin provides some helpers around
+                    it and gives us an opportunity to make these checks in a safe way. Let's take a short look at what
+                    we
+                    can do without getting too much into type theory.</p>
+
+                <p>Type inference in Kotlin is very good, and the compiler gives a lot of useful hints and tips while
+                    you
+                    are writing code. When you have the need to check if an object is of some type you can use the is
+                    keyword.</p>
+
+                <p>In the example, the first function will fail miserably and doesn't actually compile at all. The error
+                    message means that it can't find a plus function that matches the types. The second function fixes
+                    that:
+                    it does a simple is check and at that point Kotlin smart casts the value to an Int so it is usable
+                    within the if statement. Usually you will probably stumble more upon when statement when it comes to
+                    is
+                    checks, like so:</p>
+            </aside>
+        </section>
+        <section>
+            <h2>Why is Kotlin the next enterprise language?</h2>
+            <ol>
+            <li class="fragment">It compiles to JVM bytecode or JavaScript.</li>
+            <li class="fragment">It comes from industry</li>
+            <li class="fragment">It has official support for Android</li>
+            <li class="fragment">It costs nothing to adopt</li>
+            <li class="fragment">It is simple to learn</li>
+            <li class="fragment">It has strong commercial support from JetBrains</li>
+            <li class="fragment">It targets Java 6</li>
+            </ol>
+
+            <aside class="notes">
+                <p>This wraps up our brief overview of the language, there are a few topics I haven't covered such
+                    as</p>
+                <ul>
+                    <li>Higher order functions</li>
+                    <li>Type Parameters and Generics</li>
+                    <li>Delegates</li>
+                    <li>Namespaces</li>
+                    <li>Co-routines</li>
+                </ul>
+
+                <ol>
+                    <li>It is of greatest interest to people who work with Java today, although it could appeal to all
+                        programmers who use a garbage collected runtime, including people who currently use Scala, Go,
+                        Python,
+                        Ruby and JavaScript.
+                    </li>
+                    <li>It solves problems faced by working programmers today. As an example, the type system helps you
+                        avoid
+                        null pointer exceptions.
+                    </li>
+                    <li>There’s a high quality, one-click Java to Kotlin converter tool, and a strong focus on Java
+                        binary
+                        compatibility. You can convert an existing Java project one file at a time and everything will
+                        still
+                        compile. this also means that Kotlin programs can use all existing Java frameworks and
+                        libraries, even
+                        advanced frameworks that rely on annotation processing. The interop is seamless and does not
+                        require
+                        wrappers or adapter layers. It integrates with Maven, Gradle and other build systems.
+                    </li>
+                </ol>
+
+
+            </aside>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]//,
+        // Parallax background image
+        //parallaxBackgroundImage: 'images/sparkly.jpg', // e.g. "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg"
+
+        // Parallax background size
+        //parallaxBackgroundSize: '1920px 1080px', // CSS syntax, e.g. "2100px 900px" - currently only pixels are supported (don't use % or auto)
+
+    });
+</script>
+</body>
 </html>
